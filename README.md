@@ -10,6 +10,18 @@ A canonic organiza o contexto e as etapas do seu projeto em arquivos claros. Voc
 
 A skill atua em projetos baseados em ICM. Começa pelo que já funciona e ajuda a escolher a estrutura necessária para o trabalho.
 
+## O que quase ninguém te conta
+
+**“Preciso do modelo mais novo para ter bons resultados.”** O modelo importa. Mas, sem seu objetivo, suas informações e critérios, ele precisa adivinhar. Dê a ele o contexto do trabalho. [OpenAI](https://developers.openai.com/api/docs/guides/model-optimization)
+
+**“Quanto mais contexto, melhor.”** Informação relevante ajuda; excesso e conteúdo repetido podem atrapalhar. Entregue o que a tarefa precisa, na hora certa. [Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+**“O segredo é um prompt gigante.”** Comece com objetivo, contexto e resultado esperado. Acrescente instruções e exemplos quando resolverem um problema observado. [OpenAI](https://developers.openai.com/api/docs/guides/optimizing-llm-accuracy)
+
+**“Mais agentes sempre produzem resultados melhores.”** Eles podem ajudar em tarefas paralelas. Em tarefas sequenciais, a coordenação também pode piorar o resultado. [Google Research](https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/)
+
+**“Se parece certo, está pronto.”** Respostas convincentes ainda precisam de verificação. Defina critérios, teste com exemplos reais e revise o que importa. [OpenAI](https://developers.openai.com/cookbook/examples/agent_optimization/optimizing_agents_for_cost_and_quality)
+
 ## Instale no Codex
 
 Copie e envie ao Codex:
