@@ -2,13 +2,15 @@
 
 **Sua IA trabalha melhor quando sabe onde está, o que importa e qual é o próximo passo.**
 
-A canonic organiza o contexto e as etapas do seu projeto em arquivos claros. Você consegue entender o fluxo, encontrar falhas e continuar o trabalho sem depender de uma estrutura complexa.
+A **canonic** ajuda você a criar um **workspace canônico**: um espaço onde o contexto, as etapas e as decisões ficam claros para você e para sua IA.
+
+Na prática, você entende o fluxo, encontra falhas e continua o trabalho sem depender de uma estrutura complexa.
 
 - Encontre informações perdidas e instruções duplicadas.
 - Organize etapas, entregas e pontos de revisão.
 - Investigue onde um fluxo parou e o que precisa mudar.
 
-A skill atua em projetos baseados em ICM. Começa pelo que já funciona e ajuda a escolher a estrutura necessária para o trabalho.
+Um workspace canônico começa pelo que já funciona e reúne apenas a estrutura necessária para o trabalho.
 
 ## 5 mitos sobre otimizar o uso de IA
 
@@ -33,10 +35,10 @@ A skill fica disponível na próxima interação. Se já estiver instalada, o in
 ## Use
 
 ```text
-Use $canonic para analisar meu workspace ICM e mostrar o que precisa melhorar.
+Use $canonic para analisar meu projeto e propor um workspace canônico simples.
 ```
 
-Também funciona como ponto de partida para criar um fluxo ICM ou investigar uma etapa que falhou.
+Você também pode pedir à canonic para auditar um workspace canônico ou investigar uma etapa que falhou.
 
 Para outros agentes compatíveis, instale a pasta inteira [`skills/canonic`](skills/canonic) conforme a documentação do agente. A compatibilidade varia.
 
@@ -50,6 +52,6 @@ Contexto claro e processos legíveis ajudam a IA a trabalhar com o que importa. 
 - [Google Research — Escala de sistemas de agentes](https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/)
 - [Jake Van Clief e David McDermott — ICM](https://arxiv.org/html/2603.16021v2)
 
-A canonic é independente. Suas ferramentas são centradas em ICM; a referência ao OKF não implica conformidade com o formato.
+A canonic é independente. A versão atual aplica princípios e ferramentas de ICM; a referência ao OKF não implica conformidade com o formato.
 
 [Licença MIT](LICENSE).
