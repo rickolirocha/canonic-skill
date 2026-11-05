@@ -1,7 +1,7 @@
 interface:
-  display_name: "Canonic"
-  short_description: "Design and audit ICM project structures"
-  default_prompt: "Use $canonic to audit this workspace and recommend the smallest ICM-aligned structural improvements."
+  display_name: "canonic"
+  short_description: "Organize and audit AI workspace context"
+  default_prompt: "Use $canonic to assess my AI workspace and improve context routing with the simplest useful structure."
 
 policy:
   allow_implicit_invocation: true

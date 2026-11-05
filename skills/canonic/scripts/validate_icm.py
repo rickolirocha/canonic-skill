@@ -77,20 +77,20 @@ def validate(root: Path) -> dict:
         }
 
     identity_files = [root / "AGENTS.md", root / "CLAUDE.md"]
-    if any(path.exists() for path in identity_files):
-        add("correct", "ICM-L0-001", next(path for path in identity_files if path.exists()), "Layer 0 identity file exists.")
+    if any(path.is_file() for path in identity_files):
+        add("correct", "ICM-L0-001", next(path for path in identity_files if path.is_file()), "Layer 0 identity file exists.")
     else:
         add("error", "ICM-L0-001", None, "Missing Layer 0 identity file: expected AGENTS.md or CLAUDE.md.")
 
     context = root / "CONTEXT.md"
-    if context.exists():
+    if context.is_file():
         add("correct", "ICM-L1-001", context, "Layer 1 routing file exists.")
     else:
         add("error", "ICM-L1-001", context, "Missing root CONTEXT.md.")
 
     stages_dir = root / "stages"
-    if not stages_dir.exists():
-        add("error", "ICM-STAGE-001", stages_dir, "Missing stages directory.")
+    if not stages_dir.is_dir():
+        add("error", "ICM-STAGE-001", stages_dir, "Missing stages directory or path is not a directory.")
         stage_dirs: list[Path] = []
     else:
         stage_dirs = sorted(path for path in stages_dir.iterdir() if path.is_dir())
@@ -104,7 +104,7 @@ def validate(root: Path) -> dict:
             add("warning", "ICM-STAGE-003", stage, "Stage folder should start with a two-digit order and a clear slug.")
 
         stage_context = stage / "CONTEXT.md"
-        if not stage_context.exists():
+        if not stage_context.is_file():
             add("error", "ICM-STAGE-004", stage_context, "Stage is missing CONTEXT.md.")
             continue
 
@@ -120,13 +120,13 @@ def validate(root: Path) -> dict:
             add("warning", "ICM-LAYER-001", stage_context, "Inputs should label whether material is Layer 3 or Layer 4.")
 
     layer3_candidates = ["references", "shared", "_config", "templates", "skills"]
-    if any((root / name).exists() for name in layer3_candidates):
+    if any((root / name).is_dir() for name in layer3_candidates):
         add("correct", "ICM-L3-001", root, "A Layer 3 reference location exists.")
     else:
         add("warning", "ICM-L3-001", root, "No common Layer 3 reference location found.")
 
     layer4_candidates = ["runs", "work", "inputs", "outputs"]
-    if any((root / name).exists() for name in layer4_candidates):
+    if any((root / name).is_dir() for name in layer4_candidates):
         add("correct", "ICM-L4-001", root, "A Layer 4 working-artifact location exists.")
     else:
         add("warning", "ICM-L4-001", root, "No common Layer 4 working-artifact location found.")

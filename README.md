@@ -30,7 +30,9 @@ Copie e envie ao Codex:
 
 > Use o `$skill-installer` para instalar a skill `skills/canonic` do repositório https://github.com/rickolirocha/canonic-skill.
 
-A skill fica disponível na próxima interação. Se já estiver instalada, o instalador não sobrescreve a versão existente.
+A skill fica disponível na próxima interação. O Codex pode selecioná-la automaticamente ao organizar contexto e roteamento de um workspace de IA; a seleção depende da interpretação do pedido e não é garantida em toda conversa. Para chamá-la diretamente, use `$canonic`.
+
+Se já estiver instalada, o instalador não sobrescreve nem atualiza a cópia existente. Para obter uma nova versão, peça ao Codex para conferir a instalação e orientar a atualização.
 
 ## Use
 
@@ -52,6 +54,6 @@ Contexto claro e processos legíveis ajudam a IA a trabalhar com o que importa. 
 - [Google Research — Escala de sistemas de agentes](https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/)
 - [Jake Van Clief e David McDermott — ICM](https://arxiv.org/html/2603.16021v2)
 
-A canonic é independente. A versão atual aplica princípios e ferramentas de ICM; a referência ao OKF não implica conformidade com o formato.
+A canonic é independente. O ICM é uma referência e seus modelos são opcionais; a referência ao OKF não implica conformidade com o formato.
 
 [Licença MIT](LICENSE).

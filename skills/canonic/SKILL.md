@@ -1,183 +1,55 @@
 ---
 name: canonic
-description: Design, audit, debug, and evolve workspaces using Interpretable Context Methodology (ICM). Use for requests explicitly concerning ICM, its context layers, stage contracts, or file-based handoffs, including evaluating whether ICM fits a workflow. Do not use for generic project architecture or workflow organization unrelated to ICM.
+description: Design, audit, debug, or improve how AI workspaces organize context, routing instructions, references, stage handoffs, and persistent project knowledge. Use for canonical workspaces, ICM, or requests to structure an agent's file-based context and workflow.
 ---
 
-# Canonic
+# canonic
 
-Use this skill as a technical specialist for file-first project architecture based on Interpretable Context Methodology (ICM). Do not impersonate Jake Van Clief or David McDermott, speak on their behalf, or claim their approval.
+Help people create and maintain a canonical workspace: an understandable, editable organization of the context and workflow an AI agent needs. It can be a small set of files or a larger staged system. Use the simplest structure that fits the actual task. ICM is one useful reference, not a mandatory layout or the only valid approach. Do not represent the work as endorsed by its authors or by any cited organization.
 
-## Primary Rule
-Seek the simplest architecture that makes the workflow sequential, interpretable, verifiable, editable, and reusable.
+## When to apply
 
-Prefer readable files, Markdown, JSON only when structured data is needed, explicit contracts, stage outputs, human review, deterministic local scripts, and selective context loading. Avoid unnecessary agents, frameworks, dashboards, databases, premature abstractions, decorative folders, giant context files, duplicated rules, and structural changes based only on aesthetics.
+Apply when the task is to design, organize, audit, debug, or evolve an AI workspace's context architecture: its instruction and routing files, sources of truth, stable references, current artifacts, stage responsibilities, or handoffs. This includes requests for a canonical workspace or ICM even when the user does not name a particular methodology.
 
-## Load Only Relevant Context
-Start with this `SKILL.md`, then load only what the task needs:
+Do not turn ordinary use of project context, a simple file edit, or generic file organization into an architecture project. When only a narrow routing or context problem is requested, solve that problem without imposing a complete workspace redesign.
 
-- Design new workflows: read `references/icm-principles.md`, `references/five-layer-context.md`, `references/stage-contracts.md`, and `templates/workspace-template.md`.
-- Audit existing workspaces: read `references/audit-checklist.md`, `references/anti-patterns.md`, then run `scripts/audit_tree.py` and `scripts/validate_icm.py` when possible.
-- Debug failed stages or pipelines: read `references/stage-contracts.md`, `references/source-fidelity.md`, and `templates/debug-report-template.md`.
-- Implement approved structural changes: read `templates/change-plan-template.md`, create a snapshot with `scripts/snapshot_structure.py`, and validate with `scripts/validate_icm.py`.
-- Evaluate whether ICM fits: read `references/applicability-boundaries.md`.
+## Working principles
 
-Use `templates/` as reusable starting points, not as current decisions for the user's project. Selective file loading limits newly introduced context; it does not erase earlier messages or tool results already in the conversation. A folder or stage boundary does not itself reset the model's context.
+- Inspect the existing project and follow its conventions. Preserve working structures unless a specific change improves the requested outcome.
+- Start with the objective, inputs, output, constraints, and decisions needed for the current task. Infer what the evidence supports; ask only when a missing answer changes a consequential decision.
+- Route the agent to the smallest relevant context: clear entry points, unambiguous paths, and sources of truth. Do not assume that a file or stage boundary resets a model's conversation or context window.
+- Distinguish stable instructions and references from current inputs, decisions, and outputs. Do not promote an old output, example, or inference into a permanent rule without human approval.
+- Use Markdown and existing files where sufficient. Add folders, templates, scripts, agents, or dependencies only to solve an observed need. Parallel agents or other architectures may be appropriate for genuinely parallel or dynamic work.
+- For workflows with multiple steps, make responsibilities, inputs, outputs, handoffs, completion criteria, and necessary human review clear. Use a formal stage contract only when it adds value.
+- Preserve originals and meaning when reorganizing. Separate facts, inferences, and recommendations. Verify paths and important links after moving files; do not change unrelated content.
+- Respect user authorization and applicable policy. Take a recoverable checkpoint where appropriate, and obtain approval before destructive or irreversible changes. A structural inventory is not a content backup.
+- Validate relevant behavior and report material limitations. Scripts and model output are evidence to inspect, not proof of source fidelity or a finished workflow.
 
-## Modes
-- `DISCOVER`: use when the real process is unclear. Inspect files, identify missing information, ask only blocking questions, map inputs, transformations, decisions, outputs, review points, and propose a minimum architecture. Do not implement before resolving architecture-changing unknowns.
-- `DESIGN`: use to project a new structure. Deliver workflow map, stages, dependencies, layers, review gates, proposed tree, folder functions, required files, deliberately omitted items, risks, and limitations.
-- `AUDIT`: use to analyze an existing structure. Inspect tree, context files, duplication, responsibilities, outputs, references, working artifacts, scripts, templates, skills, and current state. Classify each finding as critical, important, optional improvement, correct, or missing information, with evidence paths.
-- `IMPLEMENT`: use to apply changes. Record current state, create a plan, separate reversible from destructive changes, ask approval for destructive changes, create a backup or use version control, execute, validate, and report exact changes.
-- `DEBUG`: use when an output or pipeline fails. Investigate working artifact, stage contract, references loaded, instruction conflicts, previous output, missing context, excessive context, multi-responsibility stage, deterministic script candidates, and real model/tool limitations.
-- `EVOLVE`: use to improve a system that already works. Expand only when there is evidence of repeated use, repeated human edits, duplicated instructions, script candidates, reusable components, templates, or skills.
+## Adapt to the task
 
-If no mode is specified, infer it from the request and state the mode explicitly.
+- **Discover or design:** inspect the current state, identify the real process and proposed outputs, then make the smallest useful structure and handoffs explicit. A simple context router may be enough.
+- **Audit:** compare the intended workflow with the actual files and instructions. Report consequential issues with evidence, their impact, and proportionate fixes; do not require a particular directory layout.
+- **Debug:** trace the failure through the relevant input, instruction, source, working artifact, and handoff. Correct the cause rather than adding orchestration by default.
+- **Implement or evolve:** make changes within the authorized scope, preserve user edits, use a recoverable checkpoint for risky work, and verify the affected flow. If crucial information is missing, continue independent work and ask only for the blocking decision.
 
-## Completeness Gate
-Before creating or modifying architecture, confirm enough information to avoid distorting the workflow:
+Use the ICM five-layer model as an optional lens for separating identity, routing, stage instructions, stable references, and current artifacts. Preserve existing ICM contracts and review gates when the user is working with ICM; do not require all five layers, numbered stages, or `CONTEXT.md` files in every workspace. If the task needs real-time coordination, distributed state, or high concurrency, assess whether a different architecture fits better.
 
-- workspace objective;
-- final expected output;
-- operator or user;
-- execution frequency;
-- inputs and outputs;
-- real sequence of stages;
-- human review points;
-- indispensable human decisions;
-- stable references;
-- per-run working artifacts;
-- tools and integrations;
-- deterministic tasks;
-- judgment-heavy tasks;
-- quality and completion criteria;
-- traceability and reuse needs;
-- authority between files;
-- technical limits;
-- overwrite or loss risks.
+## Load only what is useful
 
-Do not ask what can be confirmed from files. Ask only when the missing answer changes the current decision.
+The packaged references and templates are optional aids, not existing project decisions or universal requirements:
 
-## Question Protocol
-When information is needed, group questions in one concise round:
+- Context design: `references/icm-principles.md`, `references/five-layer-context.md`, `references/stage-contracts.md`.
+- Audit: `references/audit-checklist.md`, `references/anti-patterns.md`.
+- Source fidelity: `references/source-fidelity.md`.
+- Fit and limitations: `references/applicability-boundaries.md`.
+- Examples: `templates/` contains ICM-oriented workspace, contract, audit, debug, and change-plan templates; adapt them to the task.
 
-```md
-## Necessary information
+The local Python helpers are optional and assume the conventional ICM template layout:
 
-I need these answers because they change the architecture:
+- `scripts/audit_tree.py <workspace>` lists a compact tree and structural notes.
+- `scripts/validate_icm.py <workspace>` checks conventional names and stage sections, not semantic correctness.
+- `scripts/snapshot_structure.py <workspace> --output <file>` records names, sizes, and hashes, not file contents; it cannot restore files.
 
-1. [Specific question]
-   A. [Option]
-   B. [Option]
-   C. Other: [...]
+Use them when their assumptions and scope fit the workspace. Otherwise, inspect the relevant files directly. Do not classify a different layout as defective merely because an ICM-specific helper reports it as missing.
 
-   Why it matters:
-   [How the answer changes stages, layers, outputs, or safety.]
-```
-
-After receiving answers, record confirmed decisions, update the plan, ask only what remains missing, and do not reopen decisions without new evidence.
-
-## Source Fidelity
-Always distinguish:
-
-- Observed: directly verified in files, folders, code, documentation, user messages, logs, or outputs.
-- Inferred: probable but not directly declared.
-- Recommended: proposed by Canonic based on ICM principles.
-- Unknown: not found or not confirmed.
-
-Never turn a hypothesis into a fact, a probable preference into a confirmed preference, a draft into a current decision, an old output into a current rule, an example into a requirement, or a recommendation into a user order.
-
-Before editing business, strategy, research, client context, or human decision files: identify content type, preserve originals, avoid semantic rewriting when reorganizing, keep names, numbers, dates, and claims intact, highlight ambiguities, record normalization, and show differences when meaning changes.
-
-If two sources conflict, stop and show the conflict, involved files or messages, structural impact, authority question, and the change that is waiting for confirmation.
-
-## Assumptions
-Silent assumptions are forbidden.
-
-If an assumption is non-critical and safe, write:
-
-> Proposed assumption: [...]
-
-Then explain why it is reasonable, what it affects, and how it can change later.
-
-If an assumption could cause file loss, workflow distortion, wrong stages, mixed Layer 3/Layer 4 material, wrong automation, or unnecessary technical dependency, ask before proceeding.
-
-## Five ICM Layers
-The paths below are conventions used by this skill, not mandatory locations for every ICM workspace. Preserve the five roles, stage order, and explicit handoffs when a workspace uses different paths.
-
-- Layer 0: global identity, usually `AGENTS.md` or `CLAUDE.md`. Answers "Where am I?"
-- Layer 1: workspace routing, usually root `CONTEXT.md`. Answers "Where should I go?"
-- Layer 2: stage contract, usually `stages/NN_name/CONTEXT.md`. Answers "What should I do now?"
-- Layer 3: stable reference material, usually `references/`, `shared/`, `_config/`, `setup/`, `templates/`, or `skills/`. Answers "Which rules apply?"
-- Layer 4: current working artifacts, usually `runs/`, `work/`, `inputs/`, `outputs/`, or stage output folders. Answers "What am I working with?"
-
-Layer 3 and Layer 4 must not be treated as the same thing. A current artifact does not become a permanent rule without explicit human decision.
-
-## Stage Contract
-Each stage `CONTEXT.md` should define:
-
-- Objective;
-- Inputs with path, layer, function, required status, and relevant sections;
-- Process;
-- Outputs;
-- Completion criteria;
-- Boundaries;
-- Human review.
-
-Add `Verify`, `Failure conditions`, and `Notes for the agent` only when they add real robustness. Match review depth to the risk while preserving the human review points defined by the workspace; this does not authorize skipping them.
-
-## Destructive-Change Safety
-Never delete original sources, overwrite important files, move unknown files in bulk, alter sensitive configuration, expose credentials, include secrets in versioned files, modify dependencies, or execute destructive commands without explicit approval.
-
-Before relevant refactors, check Git when available, create or recommend a checkpoint, produce a movement plan, list old and new paths, preserve history when possible, validate links and references after the change, and use backups when Git is unavailable.
-
-Structural change does not authorize semantic change.
-
-## Scripts
-Use scripts for deterministic work instead of asking the model to reason through mechanical operations:
-
-- `scripts/validate_icm.py <workspace>`: check conventional identity/routing files, required stage headings under `stages/`, common reference/artifact directory names, and structural warnings.
-- `scripts/audit_tree.py <workspace>`: print a compact tree and lightweight structural notes.
-- `scripts/snapshot_structure.py <workspace> --output <file>`: record a JSON inventory of paths, file sizes, and content hashes before implementation work. It does not copy file contents and cannot restore them; use Git or a separate backup for recovery.
-
-The validator and tree audit assume the layout used by this skill's templates. For other layouts, assess the contracts and handoffs directly rather than treating a layout mismatch as an ICM defect. A validator pass does not establish input-file existence, output quality, source fidelity, correct separation of content layers, or readiness to execute; check the properties relevant to the task directly.
-
-When Python is not on PATH inside Codex Desktop, use the bundled Python path from `load_workspace_dependencies`.
-
-## Response Format
-Adapt this structure to the task:
-
-```md
-# Canonic
-
-## Mode
-DISCOVER | DESIGN | AUDIT | IMPLEMENT | DEBUG | EVOLVE
-
-## Objective
-
-## Observed facts
-
-## Inferences
-
-## Missing information
-
-## Questions
-
-## Diagnosis
-
-## Recommendation
-
-## Change plan
-
-## Changes applied
-
-## Verification
-
-## Remaining risks
-
-## Next step
-```
-
-If there are blocking questions, do not fill `Changes applied`.
-
-## Completion Criteria
-Finish only when the task has preserved source fidelity, separated observed facts from inference and recommendation, used the minimum viable architecture, kept Layer 3 and Layer 4 separate, defined stage handoffs where stages exist, protected destructive changes behind approval, run deterministic validation where available, and reported residual risks.
+Respond in the user's language, with the findings, actions, checks, and material uncertainties that matter for the request. Do not force a fixed report format for every task.

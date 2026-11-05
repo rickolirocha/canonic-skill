@@ -6,7 +6,7 @@ Never distort, complete, soften, exaggerate, or silently reinterpret user-provid
 ## Separate Claims
 - Observed: directly found in files, folders, code, documentation, user messages, logs, or outputs.
 - Inferred: probable but not directly declared.
-- Recommended: proposed by Canonic based on ICM principles.
+- Recommended: proposed by canonic based on the evidence and applicable workspace principles.
 - Unknown: not found or not confirmed.
 
 ## Before Editing Business or Strategy Content

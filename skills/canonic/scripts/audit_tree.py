@@ -36,11 +36,11 @@ def iter_tree(root: Path, max_depth: int) -> list[str]:
 
 def analyze(root: Path) -> list[str]:
     notes: list[str] = []
-    if not (root / "AGENTS.md").exists() and not (root / "CLAUDE.md").exists():
+    if not (root / "AGENTS.md").is_file() and not (root / "CLAUDE.md").is_file():
         notes.append("Missing Layer 0 identity file: AGENTS.md or CLAUDE.md.")
-    if not (root / "CONTEXT.md").exists():
+    if not (root / "CONTEXT.md").is_file():
         notes.append("Missing Layer 1 routing file: CONTEXT.md.")
-    if not (root / "stages").exists():
+    if not (root / "stages").is_dir():
         notes.append("Missing stages directory.")
 
     for path in root.rglob("*"):
@@ -48,9 +48,9 @@ def analyze(root: Path) -> list[str]:
             notes.append(f"Suspicious generic folder: {path.relative_to(root).as_posix()}")
 
     stage_dir = root / "stages"
-    if stage_dir.exists():
+    if stage_dir.is_dir():
         for stage in sorted(path for path in stage_dir.iterdir() if path.is_dir()):
-            if not (stage / "CONTEXT.md").exists():
+            if not (stage / "CONTEXT.md").is_file():
                 notes.append(f"Stage missing CONTEXT.md: {stage.relative_to(root).as_posix()}")
     return notes
 
