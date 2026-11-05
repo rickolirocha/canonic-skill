@@ -28,7 +28,7 @@ Um workspace canônico começa pelo que já funciona e reúne apenas a estrutura
 
 Copie e envie ao Codex:
 
-> Use o `$skill-installer` para instalar a skill `skills/canonic` do repositório https://github.com/rickolirocha/canonic-skill.
+> Instale esta skill do repositório: https://github.com/rickolirocha/canonic-skill
 
 A skill fica disponível na próxima interação. O Codex pode selecioná-la automaticamente ao organizar contexto e roteamento de um workspace de IA; a seleção depende da interpretação do pedido e não é garantida em toda conversa. Para chamá-la diretamente, use `$canonic`.
 
