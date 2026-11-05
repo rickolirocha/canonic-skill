@@ -1,8 +1,8 @@
 # Stage Contracts
 
-Each stage should have a `CONTEXT.md` file with a clear contract.
+Use explicit contracts when a multi-stage workflow needs reliable handoffs or review. The user's existing conventions may define the contract in another file or format. A simple workflow need not create separate stage folders or contract files. For the conventional ICM template, each stage uses a `CONTEXT.md` file.
 
-## Required Sections
+## Conventional ICM sections
 
 ```md
 # Stage NN - Name
@@ -34,10 +34,10 @@ What the human should review before the next stage.
 - `Failure conditions`: when the stage must stop.
 - `Notes for the agent`: operational details or exceptions.
 
-## Contract Smells
+## Signals to check in context
 - Inputs are described as "whatever is relevant".
 - Outputs are not named.
-- Stage writes only to chat.
-- Stage both changes strategy and produces final delivery.
-- Human approval is implied but not named.
+- A handoff exists only in chat even though the next stage requires durable state.
+- A stage changes strategy outside its approved scope.
+- A required human review is implied but not named.
 - The contract points to a giant file without relevant sections.

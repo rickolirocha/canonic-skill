@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -24,9 +25,11 @@ def sha256(path: Path) -> str:
 def snapshot(root: Path) -> dict:
     root = root.resolve()
     entries = []
-    for path in sorted(root.rglob("*"), key=lambda item: item.relative_to(root).as_posix()):
-        if any(part in SKIP_DIRS for part in path.relative_to(root).parts):
-            continue
+    paths = []
+    for directory, names, files in os.walk(root, followlinks=False):
+        names[:] = [name for name in names if name not in SKIP_DIRS]
+        paths.extend(Path(directory) / name for name in names + files if name not in SKIP_DIRS)
+    for path in sorted(paths, key=lambda item: item.relative_to(root).as_posix()):
         relative = path.relative_to(root).as_posix()
         if path.is_dir():
             entries.append({"path": relative, "type": "dir"})

@@ -1,5 +1,7 @@
 # ICM Principles
 
+These principles describe the ICM reference, especially file-first sequential workflows. Apply them when they fit the user's process; they are not mandatory for every canonical workspace.
+
 ## Primary Rule
 Seek the simplest architecture that makes a workflow sequential, interpretable, verifiable, editable, and reusable.
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -21,6 +22,7 @@ REQUIRED_STAGE_SECTIONS = [
 ]
 
 SUSPICIOUS_DIR_NAMES = {"misc", "general", "other", "others", "geral", "outros", "temp"}
+SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules"}
 
 
 def read_text(path: Path) -> str:
@@ -131,9 +133,11 @@ def validate(root: Path) -> dict:
     else:
         add("warning", "ICM-L4-001", root, "No common Layer 4 working-artifact location found.")
 
-    for path in root.rglob("*"):
-        if path.is_dir() and path.name.lower() in SUSPICIOUS_DIR_NAMES:
-            add("warning", "ICM-ANTI-001", path, "Suspicious generic folder name; verify this is not a permanent dump.")
+    for directory, names, _ in os.walk(root, followlinks=False):
+        names[:] = sorted(name for name in names if name not in SKIP_DIRS)
+        for name in names:
+            if name.lower() in SUSPICIOUS_DIR_NAMES:
+                add("warning", "ICM-ANTI-001", Path(directory) / name, "Suspicious generic folder name; verify this is not a permanent dump.")
 
     return {
         "root": str(root),

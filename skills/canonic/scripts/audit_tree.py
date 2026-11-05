@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 
 
@@ -43,9 +44,12 @@ def analyze(root: Path) -> list[str]:
     if not (root / "stages").is_dir():
         notes.append("Missing stages directory.")
 
-    for path in root.rglob("*"):
-        if path.is_dir() and path.name.lower() in SUSPICIOUS:
-            notes.append(f"Suspicious generic folder: {path.relative_to(root).as_posix()}")
+    for directory, names, _ in os.walk(root, followlinks=False):
+        names[:] = sorted(name for name in names if name not in SKIP_DIRS)
+        for name in names:
+            path = Path(directory) / name
+            if name.lower() in SUSPICIOUS:
+                notes.append(f"Suspicious generic folder: {path.relative_to(root).as_posix()}")
 
     stage_dir = root / "stages"
     if stage_dir.is_dir():

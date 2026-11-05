@@ -1,6 +1,6 @@
 ---
 name: canonic
-description: Design, audit, debug, or improve how AI workspaces organize context, routing instructions, references, stage handoffs, and persistent project knowledge. Use for canonical workspaces, ICM, or requests to structure an agent's file-based context and workflow.
+description: Design, audit, debug, or improve how AI workspaces organize and route context, agent instructions, references, and workflow handoffs. Use for canonical workspaces, ICM, or requests to organize persistent context for AI agents.
 ---
 
 # canonic
@@ -17,13 +17,14 @@ Do not turn ordinary use of project context, a simple file edit, or generic file
 
 - Inspect the existing project and follow its conventions. Preserve working structures unless a specific change improves the requested outcome.
 - Start with the objective, inputs, output, constraints, and decisions needed for the current task. Infer what the evidence supports; ask only when a missing answer changes a consequential decision.
-- Route the agent to the smallest relevant context: clear entry points, unambiguous paths, and sources of truth. Do not assume that a file or stage boundary resets a model's conversation or context window.
+- Start at the existing entry points and trace only the paths needed for the task. Give the agent enough relevant context to act correctly: objectives, applicable constraints, source of truth, current state, and required handoffs. Include important exceptions and evidence; short is not better if it omits what the task needs.
+- Keep routing instructions actionable: state when to follow each path, its purpose, and any required input or decision. Point to the authoritative source instead of copying rules; keep paths and section references accurate. Do not assume a file or stage boundary resets the conversation or context window.
 - Distinguish stable instructions and references from current inputs, decisions, and outputs. Do not promote an old output, example, or inference into a permanent rule without human approval.
 - Use Markdown and existing files where sufficient. Add folders, templates, scripts, agents, or dependencies only to solve an observed need. Parallel agents or other architectures may be appropriate for genuinely parallel or dynamic work.
 - For workflows with multiple steps, make responsibilities, inputs, outputs, handoffs, completion criteria, and necessary human review clear. Use a formal stage contract only when it adds value.
 - Preserve originals and meaning when reorganizing. Separate facts, inferences, and recommendations. Verify paths and important links after moving files; do not change unrelated content.
 - Respect user authorization and applicable policy. Take a recoverable checkpoint where appropriate, and obtain approval before destructive or irreversible changes. A structural inventory is not a content backup.
-- Validate relevant behavior and report material limitations. Scripts and model output are evidence to inspect, not proof of source fidelity or a finished workflow.
+- Validate relevant behavior and report material limitations. For routing changes, trace representative requests from entry point to the intended source and check affected paths, conflicts, missing inputs, and existing handoffs. Inspect scripts and model output as evidence, not proof of source fidelity or a finished workflow.
 
 ## Adapt to the task
 
@@ -38,8 +39,8 @@ Use the ICM five-layer model as an optional lens for separating identity, routin
 
 The packaged references and templates are optional aids, not existing project decisions or universal requirements:
 
-- Context design: `references/icm-principles.md`, `references/five-layer-context.md`, `references/stage-contracts.md`.
-- Audit: `references/audit-checklist.md`, `references/anti-patterns.md`.
+- Context design: consult `references/icm-principles.md` for ICM principles, `references/five-layer-context.md` for context roles, and `references/stage-contracts.md` only for staged workflows that need explicit contracts.
+- Audit: consult `references/audit-checklist.md` and `references/anti-patterns.md` as needed, treating ICM-specific checks as conditional on the project's design.
 - Source fidelity: `references/source-fidelity.md`.
 - Fit and limitations: `references/applicability-boundaries.md`.
 - Examples: `templates/` contains ICM-oriented workspace, contract, audit, debug, and change-plan templates; adapt them to the task.

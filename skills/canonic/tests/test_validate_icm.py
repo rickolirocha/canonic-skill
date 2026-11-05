@@ -69,6 +69,39 @@ class ValidateIcmTests(unittest.TestCase):
             codes = {item["code"] for item in json.loads(result.stdout)["errors"]}
             self.assertTrue({"ICM-L0-001", "ICM-L1-001", "ICM-STAGE-004"}.issubset(codes))
 
+    def test_helpers_skip_dependency_trees_but_scan_workspace(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "node_modules" / "some-package" / "misc").mkdir(parents=True)
+            (root / ".git" / "other").mkdir(parents=True)
+            (root / "project" / "misc").mkdir(parents=True)
+
+            audit = subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "audit_tree.py"), str(root)],
+                text=True, capture_output=True, check=False,
+            )
+            self.assertEqual(audit.returncode, 0, audit.stderr)
+            self.assertIn("project/misc", audit.stdout)
+            self.assertNotIn("some-package", audit.stdout)
+            self.assertNotIn(".git/other", audit.stdout)
+
+            validation = subprocess.run(
+                [sys.executable, str(SCRIPT), str(root), "--format", "json"],
+                text=True, capture_output=True, check=False,
+            )
+            warnings = json.loads(validation.stdout)["warnings"]
+            suspicious = [item["path"] for item in warnings if item["code"] == "ICM-ANTI-001"]
+            self.assertEqual(suspicious, ["project/misc"])
+
+            snapshot = subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "snapshot_structure.py"), str(root)],
+                text=True, capture_output=True, check=False,
+            )
+            self.assertEqual(snapshot.returncode, 0, snapshot.stderr)
+            paths = {item["path"] for item in json.loads(snapshot.stdout)["entries"]}
+            self.assertIn("project/misc", paths)
+            self.assertFalse(any(path.startswith(("node_modules", ".git")) for path in paths))
+
 
 if __name__ == "__main__":
     unittest.main()
