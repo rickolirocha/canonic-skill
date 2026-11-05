@@ -1,0 +1,7 @@
+interface:
+  display_name: "Canonic"
+  short_description: "Design and audit ICM project structures"
+  default_prompt: "Use $canonic to audit this workspace and recommend the smallest ICM-aligned structural improvements."
+
+policy:
+  allow_implicit_invocation: true
