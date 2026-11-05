@@ -28,4 +28,4 @@ Never distort, complete, soften, exaggerate, or silently reinterpret user-provid
 - Do not turn opinion into rule.
 - Do not turn possibility into certainty.
 
-If fidelity cannot be guaranteed, stop and ask.
+If a concrete ambiguity or conflicting source could change meaning or cause information loss, preserve the original and ask only for the missing decision. Continue independent work that does not depend on that decision.
