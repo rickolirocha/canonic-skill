@@ -10,7 +10,7 @@ A canonic organiza o contexto e as etapas do seu projeto em arquivos claros. Voc
 
 A skill atua em projetos baseados em ICM. Começa pelo que já funciona e ajuda a escolher a estrutura necessária para o trabalho.
 
-## O que quase ninguém te conta
+## 5 mitos sobre otimizar o uso de IA
 
 **“Preciso do modelo mais novo para ter bons resultados.”** O modelo importa. Mas, sem seu objetivo, suas informações e critérios, ele precisa adivinhar. Dê a ele o contexto do trabalho. [OpenAI](https://developers.openai.com/api/docs/guides/model-optimization)
 
